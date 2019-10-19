@@ -23,6 +23,7 @@ class LangSwitch extends React.Component {
                     </span>
                 </h3>
                 <input 
+                    onClick={this.props.setLang}
                     onChange={this.toggleSwitch}
                     checked={koreanActive}
                     type='checkbox' 

@@ -166,8 +166,8 @@ main {
   .active-side-nav {
     right: 0;
   }
-  .navbar a {
-    display: none;
+  .hamburger {
+    right: 0 !important;
   }
   .mobile-name {
     display: block;
@@ -176,6 +176,9 @@ main {
     color: black;
     padding: 0 25px 10px;
     margin: 0;
+  } 
+  .navbar a {
+    display: none;
   }
 }
 

@@ -15,6 +15,7 @@ import LangSwitch from './routes/LangSwitch/LangSwitch';
 
 class App extends React.Component {
   state = {
+    korean: false,
     currentView: '/',
     hamburgerActive: false,
   }
@@ -25,8 +26,12 @@ class App extends React.Component {
     const { hamburgerActive } = this.state
     this.setState({ hamburgerActive: !hamburgerActive })
   }
+  setLang = () => {
+    const { korean } = this.state
+    this.setState({ korean: !korean })
+  }
   render() {
-    const { currentView, hamburgerActive } = this.state
+    const { currentView, hamburgerActive, korean, } = this.state
     const hamburgerClass = hamburgerActive ? 'hamburger hamburger--collapse is-active' : 'hamburger hamburger--collapse'
     const sidebarClass = hamburgerActive ? 'side-nav active-side-nav' : 'side-nav'
     return (
@@ -39,12 +44,16 @@ class App extends React.Component {
                     this.setView('/blog')
                     this.toggleHamburger()}
                   }
-                  to='/blog'>Blog</Link>
+                  to='/blog'>
+                  { korean ? '블로그' : 'Blog' }
+                </Link>
                 <Link onClick={() =>{
                     this.setView('/about')
                     this.toggleHamburger()}
                   }
-                  to='/about'>About</Link>
+                  to='/about'>
+                  { korean ? '비디오' : 'About' }
+                </Link>
                 {/* <Link onClick={() => {
                     this.setView('/about')
                     this.toggleHamburger()}
@@ -56,27 +65,33 @@ class App extends React.Component {
                   target='_blank'
                   onClick={this.toggleHamburger}
                 >
-                  Book
+                  { korean ? '책' : 'Book' }
                 </a>
-                <LangSwitch />
+                <LangSwitch setLang={this.setLang} />
               </div>
               <div className='side-links'>
                 <Link onClick={() => {
                     this.setView('/video')
                     this.toggleHamburger()}
                   }
-                  to='/video'>Video</Link>
+                  to='/video'>
+                  { korean ? '비디오' : 'Video' }
+                </Link>
                 <Link onClick={() => {
                     this.setView('/contact')
                     this.toggleHamburger()}
                   }
-                  to='/contact'>Reach Out</Link>
+                  to='/contact'>
+                  { korean ? '연락' : 'Reach Out' }
+                </Link>
                 <a 
                   href='http://young-chung.blogspot.com/'
                   rel="noopener noreferrer"
                   target='_blank'
                   onClick={this.toggleHamburger}
-                  to='/'>Past Posts</a>
+                  to='/'>
+                  { korean ? '오래된' : 'Past Posts' }
+                </a>
               </div>
             </div>
             <div className='side-nav-icons'>
@@ -100,33 +115,36 @@ class App extends React.Component {
             className={currentView === '/blog' ? 'nav-active' : ''}
             onClick={() => this.setView('/blog')}
             to='/blog'>
-            Blog
+            { korean ? '블로그' : 'Blog' }
+            
           </Link>
           <Link 
             className={currentView === '/video' ? 'nav-active' : ''}
             onClick={() => this.setView('/video')}
             to='/video'>
-            Video Series
+            { korean ? '비디오' : 'Video Series' }
           </Link>
           <Link 
             className={currentView === '/' ? 'name nav-active' : 'name'}
             onClick={() => this.setView('/')}
             to='/'>
-            <span className='name'>YC Mentoring</span>
+            <span className='name'>{ korean ? 'YC 멘토링' : 'YC Mentoring' }</span>
           </Link>
           <Link 
             className={currentView === '/about' ? 'nav-active' : ''}
             onClick={() => this.setView('/about')}
             to='/about'>
-            About
+            { korean ? '나에 대해서' : 'About' }
           </Link>
           <Link 
             className={currentView === '/contact' ? 'nav-active' : ''}
             onClick={() => this.setView('/contact')}
             to='/contact'>
-            Work With Me
+            { korean ? '연락' : 'Work With Me' }
           </Link>
-          <h1 className='mobile-name'>YC Mentoring</h1>
+          <h1 className='mobile-name'>
+            { korean ? 'YC 멘토링' : 'YC Mentoring' }
+          </h1>
           <button 
             onClick={this.toggleHamburger}
             className={hamburgerClass} 
