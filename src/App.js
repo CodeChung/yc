@@ -3,12 +3,15 @@ import Home from './routes/Home/Home';
 import Video from './routes/Video/Video';
 import About from './routes/About/About';
 import Blog from './routes/Blog/Blog';
+import Book from './routes/Book/Book';
 import Contact from './routes/Contact/Contact';
 import { Link, Route, Switch } from 'react-router-dom';
-import { IoLogoFacebook, IoMdMail, IoLogoYoutube } from 'react-icons/io'
+import { IoLogoYoutube } from 'react-icons/io'
 import { FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
 import './App.css';
+import './Hamburger.css';
+import LangSwitch from './routes/LangSwitch/LangSwitch';
 
 class App extends React.Component {
   state = {
@@ -32,24 +35,48 @@ class App extends React.Component {
           <div className='side-nav-block'>
             <div className='side-nav-links'>
               <div className='side-links'>
-                <Link onClick={this.toggleHamburger}
+                <Link onClick={() => {
+                    this.setView('/blog')
+                    this.toggleHamburger()}
+                  }
                   to='/blog'>Blog</Link>
-                <Link onClick={this.toggleHamburger}
+                <Link onClick={() =>{
+                    this.setView('/about')
+                    this.toggleHamburger()}
+                  }
                   to='/about'>About</Link>
-                <Link onClick={this.toggleHamburger}
-                  to='/'>Book</Link>
-                <Link onClick={this.toggleHamburger}
-                  to='/'>Link 7</Link>
+                {/* <Link onClick={() => {
+                    this.setView('/about')
+                    this.toggleHamburger()}
+                  } 
+                  to='/book'>Book</Link> */}
+                <a 
+                  href='https://www.overdrive.com/media/2180549/영원히-젊은-아버지의-이야기-forever-young-a-fathers-tale'
+                  rel="noopener noreferrer"
+                  target='_blank'
+                  onClick={this.toggleHamburger}
+                >
+                  Book
+                </a>
+                <LangSwitch />
               </div>
               <div className='side-links'>
-                <Link onClick={this.toggleHamburger}
+                <Link onClick={() => {
+                    this.setView('/video')
+                    this.toggleHamburger()}
+                  }
                   to='/video'>Video</Link>
-                <Link onClick={this.toggleHamburger}
+                <Link onClick={() => {
+                    this.setView('/contact')
+                    this.toggleHamburger()}
+                  }
                   to='/contact'>Reach Out</Link>
-                <Link onClick={this.toggleHamburger}
-                  to='/'>Link 6</Link>
-                <Link onClick={this.toggleHamburger}
-                  to='/'>Link 8</Link>
+                <a 
+                  href='http://young-chung.blogspot.com/'
+                  rel="noopener noreferrer"
+                  target='_blank'
+                  onClick={this.toggleHamburger}
+                  to='/'>Past Posts</a>
               </div>
             </div>
             <div className='side-nav-icons'>
@@ -85,7 +112,7 @@ class App extends React.Component {
             className={currentView === '/' ? 'name nav-active' : 'name'}
             onClick={() => this.setView('/')}
             to='/'>
-            <span className='name'>Young Chung</span>
+            <span className='name'>YC Mentoring</span>
           </Link>
           <Link 
             className={currentView === '/about' ? 'nav-active' : ''}
@@ -99,12 +126,13 @@ class App extends React.Component {
             to='/contact'>
             Work With Me
           </Link>
+          <h1 className='mobile-name'>YC Mentoring</h1>
           <button 
             onClick={this.toggleHamburger}
-            class={hamburgerClass} 
+            className={hamburgerClass} 
             type="button">
-            <span class="hamburger-box">
-              <span class="hamburger-inner"></span>
+            <span className="hamburger-box">
+              <span className="hamburger-inner"></span>
             </span>
           </button>
         </nav>
@@ -115,6 +143,7 @@ class App extends React.Component {
             <Route path='/video' component={Video} />
             <Route path='/about' component={About} />
             <Route path='/contact' component={Contact} />
+            <Route path='/book' component={Book} />
           </Switch>
         </main>
       </div>
